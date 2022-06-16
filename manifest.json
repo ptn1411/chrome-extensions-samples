@@ -1,47 +1,44 @@
 {
-  "name": "Hello, World!",
-  "description": "Hello, World!",
-  "version": "1.0",
-  "manifest_version": 3,
-  "background": {
-    "service_worker": "background.js"
-  },
-  "permissions": [
-    "storage",
-    "activeTab",
-    "scripting",
-    "tabs",
-    "activeTab",
-    "contextMenus",
-    "cookies",
-    "bookmarks",
-    "downloads",
-    "notifications",
-    "debugger",
-    "webRequest",
-    "webNavigation"
-  ],
-  "optional_permissions": [
-    "topSites"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["https://github.com/*"],
-      "exclude_matches": ["https://*.github.com/*/*"],
-      "js": ["content.js","contentRequests.js"]
-    },{
-      "matches": ["https://www.tiktok.com/*"],
-      "exclude_matches": ["https://*.github.com/*/video/*"],
-      "js": ["contentTikTok.js"]
-    }
-  ],
-  "host_permissions": [
-    "<all_urls>"
-  ],
-  "action": {
-    "default_popup": "popup.html"
-  },
+    "name": "Hello, World!",
+    "description": "Hello, World!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting",
+        "tabs",
+        "activeTab",
+        "contextMenus",
+        "cookies",
+        "bookmarks",
+        "downloads",
+        "notifications",
+        "debugger",
+        "webRequest",
+        "webNavigation"
+    ],
+    "optional_permissions": ["topSites"],
+    "content_scripts": [
+        {
+            "matches": ["https://github.com/*"],
+            "exclude_matches": ["https://*.github.com/*/*"],
+            "js": ["content.js", "contentRequests.js"]
+        },
+        {
+            "matches": ["https://www.tiktok.com/*"],
+            "exclude_matches": ["https://*.tiktok.com/*/video/*"],
+            "js": ["contentTikTok.js"]
+        }
+    ],
+    "host_permissions": ["<all_urls>"],
+    "action": {
+        "default_popup": "popup.html"
+    },
 
-  "options_page": "options.html",
-  "devtools_page": "devtools.html"
+    "options_page": "options.html",
+    "devtools_page": "devtools.html"
 }
