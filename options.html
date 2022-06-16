@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            max-width: 300px;
+            margin: auto;
+            text-align: center;
+            font-family: arial;
+        }
+
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
+
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+        button:hover, a:hover {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+<label>
+    <textarea>
+        javascript:(() => {
+    function findLink() {
+        const link = [];
+        document.querySelectorAll('a').forEach(((value, key) => {
+            if (document.querySelectorAll('a')[key].href) {
+                if (document.querySelectorAll('a')[key].href.split('/').length === 7){
+                    if (document.querySelectorAll('a')[key].href.split('/')[4] === 'photos') {
+                        link.push(document.querySelectorAll('a')[key].href)
+                    }
+                }
+            }
+        }))
+        return link
+    }
+    function downloadLink(link) {
+        const uid = window.location.href.split('/')[3].split('?')[0];
+        const file = new Blob([JSON.stringify(link)], {type: 'text/plain'});
+        const url = window.URL.createObjectURL(file);
+        const b = document.createElement("a");
+        b.style.display = "none";
+        b.href = url;
+        b.setAttribute("download", `${uid}-Namdeptrai.txt`);
+        b.download = `${uid}-Namdeptrai.txt`;
+        document.body.appendChild(b);
+        b.click();
+        window.URL.revokeObjectURL(url);
+    }
+    var i = 0;
+    function pageScroll() {
+        i += 2;
+        const canvas = document.querySelectorAll('img').length;
+        window.scrollBy(0, 1000);
+        if (i > canvas) {
+            const link = findLink();
+            downloadLink(link);
+            return;
+        }
+        setTimeout(pageScroll, 100);
+    }
+    pageScroll()
+})()
+    </textarea>
+</label>
+
+<input type="file" id="fileinput">
+<button id="fileinputButton">Submit</button>
+<div id="root"></div>
+<div id="video"></div>
+
+<script src="options.js"></script>
+</body>
+</html>
